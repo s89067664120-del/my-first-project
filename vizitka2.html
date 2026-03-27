@@ -1,0 +1,252 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Софья Буланова — Визитка</title>
+  <link href="https://fonts.googleapis.com/css2?family=Lato:wght@400;700;900&display=swap" rel="stylesheet">
+  <style>
+    *, *::before, *::after {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+
+    body {
+      background-color: #fffdf9;
+      color: #2b2b2b;
+      font-family: 'Lato', sans-serif;
+      min-height: 100vh;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      padding: 24px;
+    }
+
+    .card {
+      background: #fff;
+      border-radius: 28px;
+      max-width: 420px;
+      width: 100%;
+      overflow: hidden;
+      box-shadow: 0 8px 48px rgba(43,43,43,0.1);
+      padding: 48px 36px 40px;
+      text-align: center;
+      animation: card-in 0.8s cubic-bezier(0.22,1,0.36,1) both;
+    }
+
+    @keyframes card-in {
+      from { opacity: 0; transform: translateY(40px) scale(0.96); }
+      to   { opacity: 1; transform: translateY(0) scale(1); }
+    }
+
+    /* Круглое фото */
+    .avatar {
+      width: 160px;
+      height: 160px;
+      border-radius: 50%;
+      margin: 0 auto 24px;
+      overflow: hidden;
+      border: 3px solid #c2784a;
+      box-shadow: 0 6px 28px rgba(194,120,74,0.3);
+    }
+
+    .avatar img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      object-position: center 35%;
+    }
+
+    .name {
+      font-size: 28px;
+      font-weight: 900;
+      color: #2b2b2b;
+      letter-spacing: -0.5px;
+      margin-bottom: 8px;
+    }
+
+    .specialization {
+      font-size: 14px;
+      color: rgba(43,43,43,0.5);
+      line-height: 1.5;
+      margin-bottom: 24px;
+    }
+
+    .divider {
+      width: 40px;
+      height: 2px;
+      background: #c2784a;
+      margin: 0 auto 20px;
+      border-radius: 2px;
+    }
+
+    .tag-row {
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: center;
+      gap: 8px;
+      margin-bottom: 28px;
+    }
+
+    .tag {
+      padding: 5px 14px;
+      border-radius: 50px;
+      background: rgba(194,120,74,0.08);
+      border: 1px solid rgba(194,120,74,0.25);
+      font-size: 12px;
+      color: #c2784a;
+      letter-spacing: 0.03em;
+      transition: all 0.25s;
+    }
+    .tag:hover {
+      background: rgba(194,120,74,0.15);
+      border-color: #c2784a;
+    }
+
+    .socials {
+      display: flex;
+      justify-content: center;
+      gap: 12px;
+      margin-bottom: 24px;
+    }
+
+    .social-link {
+      width: 44px;
+      height: 44px;
+      border-radius: 12px;
+      background: rgba(43,43,43,0.04);
+      border: 1px solid rgba(43,43,43,0.1);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      text-decoration: none;
+      color: rgba(43,43,43,0.5);
+      transition: all 0.3s cubic-bezier(0.34,1.56,0.64,1);
+      position: relative;
+      overflow: hidden;
+    }
+
+    .social-link::before {
+      content: '';
+      position: absolute;
+      inset: 0;
+      border-radius: inherit;
+      opacity: 0;
+      transition: opacity 0.3s;
+    }
+    .social-link.telegram::before { background: linear-gradient(135deg, #229ed9, #1a7fc1); }
+
+    .social-link:hover {
+      transform: translateY(-3px) scale(1.1);
+      color: #fff;
+      box-shadow: 0 6px 20px rgba(0,0,0,0.1);
+    }
+    .social-link:hover::before { opacity: 1; }
+    .social-link:hover svg { position: relative; z-index: 1; }
+    .social-link svg { width: 20px; height: 20px; }
+
+    .btn-contact {
+      display: inline-flex;
+      align-items: center;
+      gap: 10px;
+      padding: 15px 36px;
+      border-radius: 50px;
+      text-decoration: none;
+      font-size: 15px;
+      font-weight: 700;
+      font-family: 'Lato', sans-serif;
+      letter-spacing: 0.03em;
+      color: #fff;
+      background: #c2784a;
+      border: none;
+      cursor: pointer;
+      position: relative;
+      overflow: hidden;
+      transition: transform 0.3s cubic-bezier(0.34,1.56,0.64,1), box-shadow 0.3s, background 0.2s;
+      box-shadow: 0 4px 20px rgba(194,120,74,0.35);
+    }
+    .btn-contact:hover {
+      background: #ad6840;
+      transform: translateY(-3px) scale(1.04);
+      box-shadow: 0 10px 32px rgba(194,120,74,0.45);
+    }
+    .btn-contact:active { transform: scale(0.98); }
+    .btn-contact svg { width: 18px; height: 18px; flex-shrink: 0; }
+
+    .ripple {
+      position: absolute;
+      border-radius: 50%;
+      transform: scale(0);
+      animation: ripple-anim 0.6s linear;
+      background: rgba(255,255,255,0.3);
+      pointer-events: none;
+    }
+    @keyframes ripple-anim {
+      to { transform: scale(4); opacity: 0; }
+    }
+
+    .card-footer {
+      margin-top: 24px;
+      font-size: 11px;
+      color: rgba(43,43,43,0.25);
+      letter-spacing: 0.05em;
+    }
+
+    @media (max-width: 480px) {
+      .card { padding: 36px 24px 32px; }
+      .avatar { width: 140px; height: 140px; }
+    }
+  </style>
+</head>
+<body>
+
+  <div class="card">
+
+    <div class="avatar">
+      <img src="ChatGPT Image 1 янв. 2026 г., 21_58_14.png" alt="Софья Буланова">
+    </div>
+
+    <h1 class="name">Софья Буланова</h1>
+    <p class="specialization">Маркетинговые тексты и SEO<br>под задачи бизнеса</p>
+
+    <div class="divider"></div>
+
+    <div class="tag-row">
+      <span class="tag">Копирайтинг</span>
+      <span class="tag">SEO-тексты</span>
+      <span class="tag">Контент-маркетинг</span>
+    </div>
+
+    <div class="socials">
+      <a href="https://t.me/S_89067664120" target="_blank" rel="noopener" class="social-link telegram" title="Telegram">
+        <svg viewBox="0 0 24 24" fill="currentColor">
+          <path d="M11.944 0A12 12 0 0 0 0 12a12 12 0 0 0 12 12 12 12 0 0 0 12-12A12 12 0 0 0 12 0a12 12 0 0 0-.056 0zm4.962 7.224c.1-.002.321.023.465.14a.506.506 0 0 1 .171.325c.016.093.036.306.02.472-.18 1.898-.962 6.502-1.36 8.627-.168.9-.499 1.201-.82 1.23-.696.065-1.225-.46-1.9-.902-1.056-.693-1.653-1.124-2.678-1.8-1.185-.78-.417-1.21.258-1.91.177-.184 3.247-2.977 3.307-3.23.007-.032.014-.15-.056-.212s-.174-.041-.249-.024c-.106.024-1.793 1.14-5.061 3.345-.48.33-.913.49-1.302.48-.428-.008-1.252-.241-1.865-.44-.752-.245-1.349-.374-1.297-.789.027-.216.325-.437.893-.663 3.498-1.524 5.83-2.529 6.998-3.014 3.332-1.386 4.025-1.627 4.476-1.635z"/>
+        </svg>
+      </a>
+    </div>
+
+    <a href="https://t.me/S_89067664120" target="_blank" rel="noopener" class="btn-contact" id="ctaBtn">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+        <path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"/>
+      </svg>
+      Написать мне
+    </a>
+
+    <p class="card-footer">© 2026 Sofya Bulanova</p>
+  </div>
+
+  <script>
+    document.getElementById('ctaBtn').addEventListener('click', function(e) {
+      const rect = this.getBoundingClientRect();
+      const r = document.createElement('span');
+      r.className = 'ripple';
+      const size = Math.max(rect.width, rect.height);
+      r.style.cssText = `width:${size}px;height:${size}px;left:${e.clientX-rect.left-size/2}px;top:${e.clientY-rect.top-size/2}px`;
+      this.appendChild(r);
+      setTimeout(() => r.remove(), 700);
+    });
+  </script>
+
+</body>
+</html>
